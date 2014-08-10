@@ -1,0 +1,56 @@
+[[local|localrc]]
+DEST=<%= node[:devstack][:dest] %>
+ADMIN_PASSWORD=<%= node[:devstack][:admin_password] %>
+MYSQL_PASSWORD=<%= node[:devstack][:mysql_password] %>
+RABBIT_PASSWORD=<%= node[:devstack][:rabbit_password] %>
+SERVICE_PASSWORD=<%= node[:devstack][:service_password] %>
+SERVICE_TOKEN=<%= node[:devstack][:service_token] %>
+LOGFILE=<%= node[:devstack][:logfile] %>
+LOGDAYS=<%= node[:devstack][:logdays] %>
+LOG_COLOR=<%= node[:devstack][:log_color] ? 'True' : 'False' %>
+SCREEN_LOGDIR=<%= node[:devstack][:screen_logdir] %>
+API_RATE_LIMIT=<%= node[:devstack][:api_rate_limit] ? 'True' : 'False' %>
+APT_FAST=<%= node[:devstack][:apt_fast] ? 'True' : 'False' %>
+RECLONE=<%= node[:devstack][:reclone] ? 'yes' : 'no' %>
+HOST_IP=<%= node[:devstack][:host_ip] %>
+
+# Enabled services
+<% node[:devstack][:enabled_services].each do |service| %>
+enable_service <%= service %>
+<% end %>
+
+# Disabled services
+<% node[:devstack][:disabled_services].each do |service| %>
+disable_service <%= service %>
+<% end %>
+
+# Nova
+NOVA_BRANCH=<%= node[:devstack][:nova][:branch] %>
+VIRT_DRIVER=<%= node[:devstack][:nova][:virt_driver] %>
+
+# Neutron
+NEUTRON_BRANCH=<%= node[:devstack][:neutron][:branch] %>
+PHYSICAL_NETWORK=<%= node[:devstack][:neutron][:physical_network] %>
+OVS_PHYSICAL_BRIDGE=<%= node[:devstack][:neutron][:ovs_physical_bridge] %>
+PUBLIC_INTERFACE=<%= node[:devstack][:neutron][:public_interface] %>
+#ALLOCATION_POOL="start=<%= node[:devstack][:neutron][:dhcp_first_address] %>,end=<%= node[:devstack][:neutron][:dhcp_last_address] %>"
+FIXED_RANGE=<%= node[:devstack][:neutron][:fixed_range] %>
+NETWORK_GATEWAY=<%= node[:devstack][:neutron][:network_gateway] %>
+
+# Glance
+GLANCE_BRANCH=<%= node[:devstack][:glance][:branch] %>
+<% if node[:devstack][:image_urls].length > 0 %>
+# Custom images to load in glance
+IMAGE_URLS+=',<%= node[:devstack][:image_urls].join ',' %>'
+<% end %>
+
+# Cinder
+CINDER_BRANCH=<%= node[:devstack][:cinder][:branch] %>
+
+# Ironic
+IRONIC=<%= node[:devstack][:ironic][:branch] %>
+IRONIC_BAREMETAL_BASIC_OPS=<%= node[:devstack][:ironic][:baremetal_basic_ops] ? 'True' : 'False' %>
+IRONIC_VM_COUNT=<%= node[:devstack][:ironic][:vm_count] %>
+IRONIC_VM_SPECS_CPU=<%= node[:devstack][:ironic][:vm_specs_cpu] %>
+IRONIC_VM_SPECS_RAM=<%= node[:devstack][:ironic][:vm_specs_ram] %>
+IRONIC_VM_SPECS_DISK=<%= node[:devstack][:ironic][:vm_specs_disk] %>
