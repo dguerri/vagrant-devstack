@@ -16,5 +16,7 @@
 # limitations under the License.
 #
 
-vagrant destroy -f
+
+vagrant destroy -f >/dev/null 2>&1
 vagrant up --provider libvirt
+

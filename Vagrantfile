@@ -62,6 +62,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.cache.enable :apt
   config.cache.scope = :machine
 
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.driver = 'qemu'
+    libvirt.uri = 'qemu:///system'
+  end
+
   boxes.each_pair do |node_name, node|
     config.vm.define node_name do |server|
       server.vm.hostname = node_name

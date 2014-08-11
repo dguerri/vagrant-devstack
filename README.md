@@ -32,6 +32,17 @@ First time (usually right after cloning this repository from Github)
 
 Connect to Horizon: `http://192.168.29.4/`
 
+
+## Notes for libvirt
+
+Because of this bug: https://github.com/pradels/vagrant-libvirt/issues/105, you may want to install the latest version of vagrant-libvirt plugin
+
+```
+  ~# vagrant plugin install vagrant-libvirt --plugin-version=0.0.19
+```
+
 --
 
-[*] Virtualbox doesn't support nested virtualisation.
+[*] Virtualbox doesn't support nested virtualisation
+
+
