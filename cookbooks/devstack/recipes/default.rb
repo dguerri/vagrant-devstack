@@ -98,22 +98,16 @@ execute 'set_permission' do
   not_if "stat #{git_repo} | grep 'Uid: ( 1001/   stack)'"
 end
 
-## Parallels Saucy workaround
-#service 'dbus' do
-#  action :start
-#  provider Chef::Provider::Service::Upstart
+#execute 'pin_ssh_address' do
+#  command 'sed -i "s/#ListenAddress 0.0.0.0/ListenAddress $(ip addr show eth0 | grep "inet " | sed "s/inet \([0-9\.]*\)\/.*/\1/" | tr -d " ")/" /etc/ssh/sshd_config'
+#  notifies :restart, 'service[ssh]', :immediately
+#  only_if  "grep '#ListenAddress 0.0.0.0' /etc/ssh/sshd_config"
 #end
 
-execute 'pin_ssh_address' do
-  command 'sed -i "s/#ListenAddress 0.0.0.0/ListenAddress $(ip addr show eth0 | grep "inet " | sed "s/inet \([0-9\.]*\)\/.*/\1/" | tr -d " ")/" /etc/ssh/sshd_config'
-  notifies :restart, 'service[ssh]', :immediately
-  only_if  "grep '#ListenAddress 0.0.0.0' /etc/ssh/sshd_config"
-end
-
-service 'ssh' do
-  action :nothing
-  provider Chef::Provider::Service::Upstart
-end
+#service 'ssh' do
+#  action :nothing
+#  provider Chef::Provider::Service::Upstart
+#end
 
 # Stack it!
 log 'Executing stack.sh. This will take a while...' do
