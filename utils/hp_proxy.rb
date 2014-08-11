@@ -12,10 +12,6 @@ class HPProxy
                 :no_proxy_ips
 
   def initialize()
-    unless Vagrant.has_plugin?('vagrant-proxyconf')
-      raise 'vagrant-proxyconf plugin is not installed!'
-    end
-
     @enabled = :false
     @verbose = false
     @http = 'proxy.bbn.hp.com'
@@ -52,6 +48,10 @@ class HPProxy
 
   def setup(config)
     if @enabled == true
+      unless Vagrant.has_plugin?('vagrant-proxyconf')
+        raise 'vagrant-proxyconf plugin is not installed!'
+      end
+
       puts 'Using proxies' if @verbose
       config.proxy.http = "#{@http_protocol}://#{@http}:#{@http_port}/"
       config.proxy.https = "#{@https_protocol}://#{@https}:#{@https_port}/"

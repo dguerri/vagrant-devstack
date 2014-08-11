@@ -17,16 +17,23 @@
 #
 
 # Vagrant boxes
-# Array of "URL ; localname ; provider"
+# Array of "URL;localname;provider"
 vagrant_boxes=(
-  "https://vagrantcloud.com/fza/trusty64/version/1/provider/parallels.box;trusty64;parallels"
-#  "https://vagrantcloud.com/ffuenf/ubuntu-14.04-server-amd64/version/7/provider/virtualbox.box;trusty64;virtualbox"
-#  "https://vagrantcloud.com/jpease/ubuntu-trusty/version/1/provider/vmware_fusion.box;trusty64;vmware_fusion"
+#   "https://vagrantcloud.com/puphpet/ubuntu1404-x64/version/2/provider/parallels.box;trusty64;parallels"
+#   "https://vagrantcloud.com/puphpet/ubuntu1404-x64/version/2/provider/vmware_desktop.box;trusty64;vmware_desktop"
+#   "https://vagrantcloud.com/puphpet/ubuntu1404-x64/version/2/provider/virtualbox.box;trusty64;virtualbox"
+   "https://vagrantcloud.com/baremettle/ubuntu-14.04/version/1/provider/libvirt.box;trusty64;libvirt"
+#   "https://vagrantcloud.com/CorbanRaun/trusty64/version/1/provider/vmware_fusion.box;trusty64;vmware_fusion"
 )
 
 # Vagrant plugins
 # Space separated list of plugins name
-vagrant_plugins="vagrant-cachier vagrant-proxyconf vagrant-parallels"
+vagrant_plugins=(
+   "vagrant-proxyconf"
+   "vagrant-cachier"
+   "vagrant-libvirt"
+   "vagrant-parallels"
+)
 
 # Setup basedir and cookbooksdir
 pushd $(dirname $0) > /dev/null
@@ -86,8 +93,9 @@ vagrant destroy -f >/dev/null 2>&1
 
 install_cookbooks $cookbooks
 install_vagrant_boxes "${vagrant_boxes[@]}"
-install_vagrant_plugins $vagrant_plugins
+install_vagrant_plugins "${vagrant_plugins[@]}"
 
 popd > /dev/null
 
 echo -e "\nNow run $basedir/rebuild.sh !"
+

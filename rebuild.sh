@@ -17,4 +17,4 @@
 #
 
 vagrant destroy -f
-vagrant up --provider parallels
+vagrant up --provider libvirt
