@@ -5,8 +5,9 @@ Devstack dev-bed with Vagrant.
 It includes:
 
 * multiple providers support (with nested virtualisation activation) [*];
-* general purpose devstack Chef cookbook;
-* http, https and socks proxy support.
+* deb packages cache (after the first build, it will rebuilds more quickly);
+* http, https and socks proxy support (socks will be used for git);
+* general purpose devstack Chef cookbook.
 
 # Usage
 
