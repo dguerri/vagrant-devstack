@@ -48,9 +48,10 @@ IMAGE_URLS+=',<%= node[:devstack][:image_urls].join ',' %>'
 CINDER_BRANCH=<%= node[:devstack][:cinder][:branch] %>
 
 # Ironic
-IRONIC=<%= node[:devstack][:ironic][:branch] %>
+IRONIC_BRANCH=<%= node[:devstack][:ironic][:branch] %>
 IRONIC_BAREMETAL_BASIC_OPS=<%= node[:devstack][:ironic][:baremetal_basic_ops] ? 'True' : 'False' %>
 IRONIC_VM_COUNT=<%= node[:devstack][:ironic][:vm_count] %>
 IRONIC_VM_SPECS_CPU=<%= node[:devstack][:ironic][:vm_specs_cpu] %>
 IRONIC_VM_SPECS_RAM=<%= node[:devstack][:ironic][:vm_specs_ram] %>
 IRONIC_VM_SPECS_DISK=<%= node[:devstack][:ironic][:vm_specs_disk] %>
+IRONIC_VM_EPHEMERAL_DISK=<%= node[:devstack][:ironic][:vm_ephemeral_disk] %>
