@@ -34,7 +34,7 @@ end
 end
 
 # Setup proxy wrapper for git (root)
-if node[:devstack][:use_proxy] == 'yes'
+if node[:devstack][:use_proxy] == true
   template '/usr/local/bin/socks_proxy_wrapper.sh' do
     source 'socks_proxy_wrapper.sh.erb'
     variables({
@@ -55,6 +55,7 @@ if node[:devstack][:use_proxy] == 'yes'
 
   execute 'configure_git_wrapper' do
     command "git config -f /root/.gitconfig core.gitproxy '/usr/local/bin/socks_proxy_wrapper.sh'"
+    not_if 'git config -f /root/.gitconfig core.gitproxy'
   end
 end
 
@@ -75,7 +76,7 @@ execute 'create_stackuser' do
 end
 
 # Setup proxy wrapper for git (stack)
-if node[:devstack][:use_proxy] == 'yes'
+if node[:devstack][:use_proxy] == true
   directory '/opt/stack/' do
     owner 'stack'
     group 'stack'
@@ -88,6 +89,7 @@ if node[:devstack][:use_proxy] == 'yes'
     command "git config -f /opt/stack/.gitconfig core.gitproxy '/usr/local/bin/socks_proxy_wrapper.sh'"
     user 'stack'
     group 'stack'
+    not_if 'git config -f /opt/stack/.gitconfig core.gitproxy'
   end
 end
 

@@ -18,7 +18,7 @@
 require './utils/hp_proxy'
 
 # Proxy support
-$hp_proxy.enabled = false
+$hp_proxy.enabled = :auto
 
 # VMs definition
 boxes = {
@@ -58,8 +58,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Configure plugins
   $hp_proxy.setup(config)
 
-  config.cache.auto_detect = false
-  config.cache.enable :apt
+  config.cache.auto_detect = true
   config.cache.scope = :machine
 
   config.vm.provider :libvirt do |libvirt|

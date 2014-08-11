@@ -19,11 +19,11 @@
 # Vagrant boxes
 # Array of "URL;localname;provider"
 vagrant_boxes=(
-#   "https://vagrantcloud.com/puphpet/ubuntu1404-x64/version/2/provider/parallels.box;trusty64;parallels"
+   "https://vagrantcloud.com/puphpet/ubuntu1404-x64/version/2/provider/parallels.box;trusty64;parallels"
 #   "https://vagrantcloud.com/puphpet/ubuntu1404-x64/version/2/provider/vmware_desktop.box;trusty64;vmware_desktop"
-#   "https://vagrantcloud.com/puphpet/ubuntu1404-x64/version/2/provider/virtualbox.box;trusty64;virtualbox"
-   "https://vagrantcloud.com/baremettle/ubuntu-14.04/version/1/provider/libvirt.box;trusty64;libvirt"
-#   "https://vagrantcloud.com/CorbanRaun/trusty64/version/1/provider/vmware_fusion.box;trusty64;vmware_fusion"
+#   "https://vagrantcloud.com/hashicorp/precise64/version/2/provider/virtualbox.box;trusty64;virtualbox"
+#   "https://vagrantcloud.com/baremettle/ubuntu-14.04/version/1/provider/libvirt.box;trusty64;libvirt"
+#   "https://vagrantcloud.com/hashicorp/precise64/version/2/provider/vmware_fusion.box;trusty64;vmware_fusion"
 )
 
 # Vagrant plugins
