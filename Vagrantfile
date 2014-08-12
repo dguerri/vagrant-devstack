@@ -15,13 +15,8 @@
 # limitations under the License.
 #
 
-require './utils/hp_proxy'
-
-# Proxy support
-$hp_proxy.enabled = :auto
-
 # VMs definition
-boxes = {
+machines = {
   'ironic-1' => {
     :vcpus => 4,
     :ram => 4096,
@@ -32,19 +27,16 @@ boxes = {
       :recipes => [ 'apt', 'ntp', 'git', 'devstack' ],
       :json => {
         :devstack => {
-          :use_proxy => $hp_proxy.enabled,
-          :socks_proxy_hostname => $hp_proxy.socks,
-          :socks_proxy_port => $hp_proxy.socks_port,
           :git_repo => '/home/devstack',
           :host_ip => '192.168.29.4',
           :logcolor => true,
           :reclone => false,
           :enabled_services => [
-            'heat', 'h-api', 'h-api-cfn', 'h-api-cw', 'h-eng',
-            'q-lbaas', 'q-svc', 'q-agt', 'q-dhcp', 'q-l3', 'q-meta', 'neutron'
+            'q-svc', 'q-agt', 'q-dhcp', 'q-l3', 'q-meta', 'neutron',
+            'ironic', 'ir-api', 'ir-cond'
           ],
           :disabled_services => [
-            'n-net'
+            'n-net', 'tempest'
           ]
         }
       }
@@ -56,7 +48,9 @@ VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Configure plugins
-  $hp_proxy.setup(config)
+  config.proxy.http = ENV['http_proxy']
+  config.proxy.https = ENV['https_proxy']
+  config.proxy.no_proxy = ENV['no_proxy']
 
   config.cache.auto_detect = true
   config.cache.scope = :machine
@@ -66,7 +60,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     libvirt.uri = 'qemu:///system'
   end
 
-  boxes.each_pair do |node_name, node|
+  machines.each_pair do |node_name, node|
     config.vm.define node_name do |server|
       server.vm.hostname = node_name
       server.vm.box = node[:box_name]

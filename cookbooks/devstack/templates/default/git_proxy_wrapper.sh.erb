@@ -1,0 +1,11 @@
+#!/bin/sh
+
+<% if @socks_proxy_hostname %>
+
+exec socat STDIO SOCKS4:<%= @socks_proxy_hostname %>:$1:$2,socksport=<%= @socks_proxy_port %>
+
+<% else %>
+
+exec socat STDIO PROXY:<%= @https_proxy_hostname %>:$1:$2,proxyport=<%= @https_proxy_port %>
+
+<% end %>

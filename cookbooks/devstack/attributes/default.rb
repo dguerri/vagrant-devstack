@@ -15,6 +15,12 @@
 # limitations under the License.
 #
 
+# Proxy
+default[:devstack][:http_proxy] = ENV['http_proxy']
+default[:devstack][:https_proxy] = ENV['https_proxy']
+default[:devstack][:socks_proxy] = nil
+default[:devstack][:no_proxy] = ENV['no_proxy']
+
 # Directory for git clone
 default[:devstack][:git_repo] = '/root/devstack'
 

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec socat STDIO SOCKS4:<%= @socks_proxy_hostname %>:$1:$2,socksport=<%= @socks_proxy_port %>
