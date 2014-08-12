@@ -56,7 +56,7 @@ function install_vagrant_boxes() {
     local local_name=$(echo "$box"|cut -d';' -f2)
     local provider=$(echo "$box"|cut -d';' -f3)
 
-    if [ -z "$(vagrant box list|grep $local_name|grep $provider)" ]; then
+    if [ -z "$(vagrant box list|awk '/^$local_name\s+ \($provider/')" ]; then
        echo "Adding '$remote_name' $provider box"
        vagrant box add $local_name $remote_name >/dev/null
        if [ $? -ne 0 ]; then
