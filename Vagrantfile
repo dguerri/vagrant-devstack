@@ -31,6 +31,15 @@ machines = {
           :host_ip => '192.168.29.4',
           :logcolor => true,
           :reclone => false,
+          :nova => {
+            :virt_driver => 'ironic'
+          },
+          :ironic  => {
+            :baremetal_basic_ops => true,
+            :vm_specs_ram => 1024,
+            :vm_count => 2,
+            :vm_specs_disk => 10
+          },
           :enabled_services => [
             'q-svc', 'q-agt', 'q-dhcp', 'q-l3', 'q-meta', 'neutron',
             'ironic', 'ir-api', 'ir-cond'
