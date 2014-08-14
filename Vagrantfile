@@ -19,7 +19,7 @@
 machines = {
   'ironic-1' => {
     :vcpus => 4,
-    :ram => 4096,
+    :ram => 8192,
     :ip => '192.168.29.4',
     :box_name => 'trusty64',
     :nested_virt => true,
@@ -36,8 +36,9 @@ machines = {
           },
           :ironic  => {
             :baremetal_basic_ops => true,
+            :vm_count => 3,
+            :vm_specs_cpu => 1,
             :vm_specs_ram => 1024,
-            :vm_count => 2,
             :vm_specs_disk => 10
           },
           :enabled_services => [
