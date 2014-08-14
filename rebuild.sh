@@ -18,5 +18,5 @@
 
 
 vagrant destroy -f >/dev/null 2>&1
-vagrant up --provider parallels
+vagrant up 
 
