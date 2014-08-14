@@ -4,10 +4,13 @@ Devstack dev-bed with Vagrant.
 
 It includes:
 
-* multiple providers support (with nested virtualisation activation) [*];
+* multiple providers support (libvirt, parallels, vmware_{desktop, fusion}, virtualbox) [*];
 * deb packages cache (after the first build, it will rebuilds more quickly);
-* http, https and socks proxy support (socks will be used for git);
+* http, https and socks proxy support (with automatic detection *);
 * general purpose devstack Chef cookbook.
+
+(*) If the environment variable socks_proxy is defined, its value will be used to configure a proxy for git.
+If socks_proxy is not defined and https_proxy is defined, git will be configure to use the latter (use it only if your proxy allows CONNECT).
 
 # Usage
 
