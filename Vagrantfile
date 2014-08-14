@@ -66,7 +66,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.cache.scope = :machine
 
   config.vm.provider :libvirt do |libvirt|
-    libvirt.driver = 'qemu'
+    libvirt.driver = 'kvm'
     libvirt.uri = 'qemu:///system'
   end
 
