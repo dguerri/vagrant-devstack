@@ -63,6 +63,7 @@ default[:devstack][:ironic][:vm_specs_cpu] = ''
 default[:devstack][:ironic][:vm_specs_ram] = ''
 default[:devstack][:ironic][:vm_specs_disk] = ''
 
+default[:devstack][:ironic][:bm_network_interface] = nil
 # Glance
 default[:devstack][:glance][:branch] = ''
 # Cinder

@@ -52,7 +52,6 @@ if use_proxy
     group 'root'
   end
 
-
   execute 'configure_git_wrapper' do
     command "git config -f /root/.gitconfig core.gitproxy '/usr/local/bin/git_proxy_wrapper.sh'"
     user 'root'
@@ -103,8 +102,27 @@ end
 script 'exec_stack' do
   interpreter 'bash'
   cwd "#{git_repo}"
-  #user 'stack'
   environment 'HOME' => '/opt/stack'
   code 'su stack -c ./stack.sh'
   not_if { ::File.exists?("#{git_repo}/stack-screenrc") }
+end
+
+if node[:devstack][:enabled_services].include? 'ironic' and
+    node[:devstack][:ironic][:bm_network_interface]
+
+  execute 'create_baremetal_bridge' do
+    command "ovs-vsctl add-br brbm"
+    not_if 'ovs-vsctl br-exists brbm'
+  end
+
+  execute 'bridge_baremetal_network' do
+    command "ovs-vsctl add-port brbm #{node[:devstack][:ironic][:bm_network_interface]}"
+    not_if "ovs-vsctl list-ports brbm | grep #{node[:devstack][:ironic][:bm_network_interface]}"
+  end
+
+  execute 'enable_baremetal_network' do
+    command "ifconfig #{node[:devstack][:ironic][:bm_network_interface]} 0.0.0.0 up"
+    not_if "ifconfig #{node[:devstack][:ironic][:bm_network_interface]} | grep UP"
+  end
+
 end

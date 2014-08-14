@@ -48,7 +48,8 @@ machines = {
             :vm_count => 3,
             :vm_specs_cpu => 1,
             :vm_specs_ram => 1024,
-            :vm_specs_disk => 10
+            :vm_specs_disk => 10,
+            :bm_network_interface => 'eth2'
           },
           :enabled_services => [
             'q-svc', 'q-agt', 'q-dhcp', 'q-l3', 'q-meta', 'neutron',
