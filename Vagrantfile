@@ -18,10 +18,19 @@
 # VMs definition
 machines = {
   'ironic-1' => {
+    :box_name => 'trusty64',
     :vcpus => 4,
     :ram => 8192,
-    :ip => '192.168.29.4',
-    :box_name => 'trusty64',
+    :networks => {
+      :openstack => {
+        :ip => '192.168.29.4',
+        :auto_config => true
+      },
+      :bm_provision => {
+        :ip => '192.168.129.4',
+        :auto_config => false
+      }
+    },
     :nested_virt => true,
     :chef_solo => {
       :recipes => [ 'apt', 'ntp', 'git', 'devstack' ],
@@ -75,7 +84,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       server.vm.hostname = node_name
       server.vm.box = node[:box_name]
 
-      server.vm.network :private_network, ip: node[:ip] if node[:ip]
+      node[:networks].each do |net_name, network|
+        server.vm.network :private_network, ip: network[:ip], auto_config: network[:auto_config]
+      end
+
 
       # Provider specific settings
       %w(parallels virtualbox libvirt vmware_fusion).each do |provider|
