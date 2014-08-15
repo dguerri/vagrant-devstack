@@ -52,7 +52,7 @@ if use_proxy
     group 'root'
   end
 
-  execute 'configure_git_wrapper' do
+  execute 'configure_git_wrapper_root' do
     command "git config -f /root/.gitconfig core.gitproxy '/usr/local/bin/git_proxy_wrapper.sh'"
     user 'root'
     group 'root'
@@ -77,10 +77,10 @@ execute 'create_stackuser' do
   not_if 'id stack'
 end
 
-# Setup proxy wrapper for git (root user)
+# Setup proxy wrapper for git (stack user)
 if use_proxy
 
-  execute 'configure_git_wrapper' do
+  execute 'configure_git_wrapper_stack' do
     command "git config -f /opt/stack/.gitconfig core.gitproxy '/usr/local/bin/git_proxy_wrapper.sh'"
     user 'stack'
     group 'stack'
