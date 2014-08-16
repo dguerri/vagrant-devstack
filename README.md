@@ -32,6 +32,14 @@ First time (usually right after cloning this repository from Github)
   ~# ./rebuild.sh
 ```
 
+VMs are defined using json (e.g., see machines.json)
+By default VMs definition is loaded from `machines.json`, it is possible to specify an alternate configuration file using the `VD_CONFIGURATION_FILE` environment variable:
+
+```
+  ~# VD_CONFIGURATION_FILE="ironic-bmnet.json" ./rebuild.sh
+  ~# VD_CONFIGURATION_FILE="ironic-bmnet.json" vagrant status
+```
+
 ## Enjoy!
 
 Connect to Horizon: `http://192.168.29.4/`
