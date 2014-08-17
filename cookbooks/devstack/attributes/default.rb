@@ -44,9 +44,11 @@ default[:devstack][:apt_fast] = true
 default[:devstack][:reclone] = true
 default[:devstack][:image_urls] = []
 # Nova
+default[:devstack][:nova][:repo] = ''
 default[:devstack][:nova][:branch] = ''
 default[:devstack][:nova][:virt_driver] = ''
 # Neutron
+default[:devstack][:neutron][:repo] = ''
 default[:devstack][:neutron][:branch] = ''
 default[:devstack][:neutron][:physical_network] = ''
 default[:devstack][:neutron][:ovs_physical_bridge] = ''
@@ -56,6 +58,7 @@ default[:devstack][:neutron][:dhcp_last_address] = ''
 default[:devstack][:neutron][:fixed_range] = ''
 default[:devstack][:neutron][:network_gateway] = ''
 # Ironic
+default[:devstack][:ironic][:repo] = ''
 default[:devstack][:ironic][:branch] = ''
 default[:devstack][:ironic][:basic_ops] = false
 default[:devstack][:ironic][:vm_count] = ''
@@ -65,6 +68,8 @@ default[:devstack][:ironic][:vm_specs_disk] = ''
 
 default[:devstack][:ironic][:bm_network_interface] = nil
 # Glance
+default[:devstack][:glance][:repo] = ''
 default[:devstack][:glance][:branch] = ''
 # Cinder
+default[:devstack][:cinder][:repo] = ''
 default[:devstack][:cinder][:branch] = ''

@@ -25,10 +25,12 @@ disable_service <%= service %>
 <% end %>
 
 # Nova
+NOVA_REPO=<%= node[:devstack][:nova][:repo] %>
 NOVA_BRANCH=<%= node[:devstack][:nova][:branch] %>
 VIRT_DRIVER=<%= node[:devstack][:nova][:virt_driver] %>
 
 # Neutron
+NEUTRON_REPO=<%= node[:devstack][:neutron][:repo] %>
 NEUTRON_BRANCH=<%= node[:devstack][:neutron][:branch] %>
 PHYSICAL_NETWORK=<%= node[:devstack][:neutron][:physical_network] %>
 OVS_PHYSICAL_BRIDGE=<%= node[:devstack][:neutron][:ovs_physical_bridge] %>
@@ -38,6 +40,7 @@ FIXED_RANGE=<%= node[:devstack][:neutron][:fixed_range] %>
 NETWORK_GATEWAY=<%= node[:devstack][:neutron][:network_gateway] %>
 
 # Glance
+GLANCE_REPO=<%= node[:devstack][:glance][:repo] %>
 GLANCE_BRANCH=<%= node[:devstack][:glance][:branch] %>
 <% if node[:devstack][:image_urls].length > 0 %>
 # Custom images to load in glance
@@ -45,9 +48,11 @@ IMAGE_URLS+=',<%= node[:devstack][:image_urls].join ',' %>'
 <% end %>
 
 # Cinder
+CINDER_REPO=<%= node[:devstack][:cinder][:repo] %>
 CINDER_BRANCH=<%= node[:devstack][:cinder][:branch] %>
 
 # Ironic
+IRONIC_REPO=<%= node[:devstack][:ironic][:repo] %>
 IRONIC_BRANCH=<%= node[:devstack][:ironic][:branch] %>
 IRONIC_BAREMETAL_BASIC_OPS=<%= node[:devstack][:ironic][:baremetal_basic_ops] ? 'True' : 'False' %>
 IRONIC_VM_COUNT=<%= node[:devstack][:ironic][:vm_count] %>
