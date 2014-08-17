@@ -57,6 +57,9 @@ default[:devstack][:neutron][:dhcp_first_address] = ''
 default[:devstack][:neutron][:dhcp_last_address] = ''
 default[:devstack][:neutron][:fixed_range] = ''
 default[:devstack][:neutron][:network_gateway] = ''
+# Heat
+default[:devstack][:heat][:repo] = ''
+default[:devstack][:heat][:branch] = ''
 # Ironic
 default[:devstack][:ironic][:repo] = ''
 default[:devstack][:ironic][:branch] = ''

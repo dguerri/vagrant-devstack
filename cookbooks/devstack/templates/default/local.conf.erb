@@ -51,6 +51,10 @@ IMAGE_URLS+=',<%= node[:devstack][:image_urls].join ',' %>'
 CINDER_REPO=<%= node[:devstack][:cinder][:repo] %>
 CINDER_BRANCH=<%= node[:devstack][:cinder][:branch] %>
 
+# Heat
+HEAT_REPO=<%= node[:devstack][:heat][:repo] %>
+HEAT_BRANCH=<%= node[:devstack][:heat][:branch] %>
+
 # Ironic
 IRONIC_REPO=<%= node[:devstack][:ironic][:repo] %>
 IRONIC_BRANCH=<%= node[:devstack][:ironic][:branch] %>
