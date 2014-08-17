@@ -47,8 +47,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       server.vm.box = node['box_name']
 
       node['networks'].each do |net_name, network|
-        server.vm.network :private_network, ip: network['ip'],
-                                            auto_config: network['auto_config']
+        server.vm.network network.fetch('type', :private_network),
+                          ip: network['ip'],
+                          mac: node['mac'],
+                          auto_config: network['auto_config']
       end
 
 
