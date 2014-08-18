@@ -1,5 +1,5 @@
 {
-  "ironic-1" : {
+  "ironic-bmnet" : {
     "box_name" : "trusty64",
     "vcpus" : 4,
     "ram" : 4096,
@@ -27,7 +27,6 @@
           "host_ip" : "192.168.29.4",
           "logcolor" : true,
           "reclone" : false,
-
           "enabled_services" : [
             "q-svc",
             "q-agt",
@@ -52,6 +51,8 @@
             "virt_driver" : "ironic"
           },
           "ironic" : {
+            "repo": "https://review.openstack.org/openstack/ironic",
+            "branch": "refs/changes/19/114719/4",
             "baremetal_basic_ops" : true,
             "bm_external_interface" : "eth2"
           }

@@ -51,8 +51,8 @@
             "virt_driver" : "ironic"
           },
           "ironic" : {
-            "baremetal_basic_ops" : false,
-            "bm_network_interface" : "eth2"
+            "baremetal_basic_ops" : true,
+            "bm_external_interface" : "eth2"
           }
         }
       }

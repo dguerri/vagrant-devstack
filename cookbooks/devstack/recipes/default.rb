@@ -108,7 +108,7 @@ script 'exec_stack' do
 end
 
 if node[:devstack][:enabled_services].include? 'ironic' and
-    node[:devstack][:ironic][:bm_network_interface]
+    node[:devstack][:ironic][:bm_external_interface]
 
   execute 'create_baremetal_bridge' do
     command "ovs-vsctl add-br brbm"
@@ -116,13 +116,13 @@ if node[:devstack][:enabled_services].include? 'ironic' and
   end
 
   execute 'bridge_baremetal_network' do
-    command "ovs-vsctl add-port brbm #{node[:devstack][:ironic][:bm_network_interface]}"
-    not_if "ovs-vsctl list-ports brbm | grep #{node[:devstack][:ironic][:bm_network_interface]}"
+    command "ovs-vsctl add-port brbm #{node[:devstack][:ironic][:bm_external_interface]}"
+    not_if "ovs-vsctl list-ports brbm | grep #{node[:devstack][:ironic][:bm_external_interface]}"
   end
 
   execute 'enable_baremetal_network' do
-    command "ifconfig #{node[:devstack][:ironic][:bm_network_interface]} 0.0.0.0 up"
-    not_if "ifconfig #{node[:devstack][:ironic][:bm_network_interface]} | grep UP"
+    command "ifconfig #{node[:devstack][:ironic][:bm_external_interface]} 0.0.0.0 up"
+    not_if "ifconfig #{node[:devstack][:ironic][:bm_external_interface]} | grep UP"
   end
 
 end
