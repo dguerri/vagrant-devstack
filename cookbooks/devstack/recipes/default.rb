@@ -34,10 +34,10 @@ end
   end
 end
 
-use_proxy = !node[:devstack][:socks_proxy].nil? || !node[:devstack][:https_proxy].nil?
+use_git_proxy = !node[:devstack][:socks_proxy].blank? || !node[:devstack][:https_proxy].blank?
 
 # Setup proxy wrapper for git (root user)
-if use_proxy
+if use_git_proxy
 
   template '/usr/local/bin/git_proxy_wrapper.sh' do
     source 'git_proxy_wrapper.sh.erb'
@@ -78,7 +78,7 @@ execute 'create_stackuser' do
 end
 
 # Setup proxy wrapper for git (stack user)
-if use_proxy
+if use_git_proxy
 
   execute 'configure_git_wrapper_stack' do
     command "git config -f /opt/stack/.gitconfig core.gitproxy '/usr/local/bin/git_proxy_wrapper.sh'"

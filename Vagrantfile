@@ -23,14 +23,18 @@ configuration_file = ENV['VD_CONFIGURATION_FILE'] || 'machines.json'
 # Load VMs definitions
 machines = JSON.load(File.new(configuration_file))
 
+use_proxy = !(ENV['http_proxy'].nil? || ENV['https_proxy'].nil?) ||
+            !(ENV['http_proxy'].empty? || ENV['https_proxy'].empty?)
 
 VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Configure plugins
-  config.proxy.http = ENV['http_proxy']
-  config.proxy.https = ENV['https_proxy']
-  config.proxy.no_proxy = ENV['no_proxy']
+  if use_proxy
+    config.proxy.http = ENV['http_proxy']
+    config.proxy.https = ENV['https_proxy']
+    config.proxy.no_proxy = ENV['no_proxy']
+  end
 
   config.cache.auto_detect = true
   config.cache.scope = :machine
@@ -51,6 +55,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                           ip: network['ip'],
                           mac: node['mac'],
                           auto_config: network['auto_config']
+
+        # Never use proxy for local addresses
+        # This is strictly needed by neutron metadata proxy and Ironic API
+        # server (actually, it would be sufficient to add only the devstack
+        # HOST_IP address to no_proxy)
+        if use_proxy and network['ip']
+          config.proxy.no_proxy += ",#{network['ip']}"
+        end
       end
 
 

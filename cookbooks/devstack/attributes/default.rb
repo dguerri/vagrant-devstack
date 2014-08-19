@@ -16,11 +16,11 @@
 #
 
 # Proxy
-default[:devstack][:http_proxy] = ENV['http_proxy']
-default[:devstack][:https_proxy] = ENV['https_proxy']
-default[:devstack][:no_proxy] = ENV['no_proxy']
+default[:devstack][:http_proxy] = ENV['http_proxy'] || ''
+default[:devstack][:https_proxy] = ENV['https_proxy'] || ''
+default[:devstack][:no_proxy] = ENV['no_proxy'] || ''
 # not standard...
-default[:devstack][:socks_proxy] = ENV['socks_proxy']
+default[:devstack][:socks_proxy] = ENV['socks_proxy'] || ''
 
 # Directory for git clone
 default[:devstack][:git_repo] = '/root/devstack'
