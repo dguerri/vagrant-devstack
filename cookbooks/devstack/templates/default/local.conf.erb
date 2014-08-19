@@ -59,6 +59,7 @@ HEAT_BRANCH=<%= node[:devstack][:heat][:branch] %>
 IRONIC_REPO=<%= node[:devstack][:ironic][:repo] %>
 IRONIC_BRANCH=<%= node[:devstack][:ironic][:branch] %>
 IRONIC_BAREMETAL_BASIC_OPS=<%= node[:devstack][:ironic][:baremetal_basic_ops] ? 'True' : 'False' %>
+IRONIC_BUILD_DEPLOY_RAMDISK=<%= node[:devstack][:ironic][:build_deploy_ramdisk] ? 'True' : 'False' %>
 IRONIC_VM_COUNT=<%= node[:devstack][:ironic][:vm_count] %>
 IRONIC_VM_SPECS_CPU=<%= node[:devstack][:ironic][:vm_specs_cpu] %>
 IRONIC_VM_SPECS_RAM=<%= node[:devstack][:ironic][:vm_specs_ram] %>

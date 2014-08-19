@@ -68,6 +68,7 @@ default[:devstack][:ironic][:vm_count] = 0
 default[:devstack][:ironic][:vm_specs_cpu] = ''
 default[:devstack][:ironic][:vm_specs_ram] = ''
 default[:devstack][:ironic][:vm_specs_disk] = ''
+default[:devstack][:ironic][:build_deploy_ramdisk] = true
 
 default[:devstack][:ironic][:bm_external_interface] = nil
 # Glance
