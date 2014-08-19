@@ -5,7 +5,7 @@
     "ram" : 2048,
     "networks" : {
       "openstack" : {
-        "ip" : "192.168.29.4",
+        "ip" : "192.168.29.4"
       }
     },
     "chef_solo" : {
@@ -18,7 +18,7 @@
       "json" : {
         "devstack" : {
           "git_repo" : "/home/devstack",
-          "host_ip" : "192.168.29.4",
+          "host_ip" : "192.168.29.4"
         }
       }
     }
