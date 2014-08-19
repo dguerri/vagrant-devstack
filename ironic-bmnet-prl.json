@@ -52,7 +52,7 @@
           },
           "ironic" : {
             "repo": "https://review.openstack.org/openstack/ironic",
-            "branch": "refs/changes/19/114719/4",
+            "branch": "refs/changes/19/114719/6",
             "baremetal_basic_ops" : true,
             "bm_external_interface" : "eth2"
           }
