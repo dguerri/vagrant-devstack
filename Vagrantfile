@@ -23,8 +23,8 @@ configuration_file = ENV['VD_CONFIGURATION_FILE'] || 'machines.json'
 # Load VMs definitions
 machines = JSON.load(File.new(configuration_file))
 
-use_proxy = !(ENV['http_proxy'].nil? || ENV['https_proxy'].nil?) ||
-            !(ENV['http_proxy'].empty? || ENV['https_proxy'].empty?)
+use_proxy = !((ENV['http_proxy'].nil? || ENV['http_proxy'].empty?) &&
+              (ENV['https_proxy'].nil? || ENV['https_proxy'].empty?))
 
 VAGRANTFILE_API_VERSION = '2'
 
