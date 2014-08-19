@@ -34,7 +34,7 @@ end
   end
 end
 
-use_git_proxy = !node[:devstack][:socks_proxy].length || !node[:devstack][:https_proxy].length
+use_git_proxy = !node[:devstack][:socks_proxy].empty? || !node[:devstack][:https_proxy].empty?
 
 # Setup proxy wrapper for git (root user)
 if use_git_proxy
