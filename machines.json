@@ -1,19 +1,13 @@
 {
-  "ironic-1" : {
+  "minimal" : {
     "box_name" : "trusty64",
-    "vcpus" : 4,
-    "ram" : 4096,
+    "vcpus" : 2,
+    "ram" : 2048,
     "networks" : {
       "openstack" : {
         "ip" : "192.168.29.4",
-        "auto_config" : true
-      },
-      "bm_provision" : {
-        "ip" : "192.168.129.4",
-        "auto_config" : false
       }
     },
-    "nested_virt" : true,
     "chef_solo" : {
       "recipes" : [
         "apt",
@@ -25,36 +19,6 @@
         "devstack" : {
           "git_repo" : "/home/devstack",
           "host_ip" : "192.168.29.4",
-          "logcolor" : true,
-          "reclone" : false,
-
-          "enabled_services" : [
-            "q-svc",
-            "q-agt",
-            "q-dhcp",
-            "q-l3",
-            "q-meta",
-            "neutron",
-            "ironic",
-            "ir-api",
-            "ir-cond"
-          ],
-          "disabled_services" : [
-            "heat",
-            "h-api",
-            "h-api-cfn",
-            "h-api-cw",
-            "h-eng",
-            "n-net",
-            "tempest"
-          ],
-          "nova" : {
-            "virt_driver" : "ironic"
-          },
-          "ironic" : {
-            "baremetal_basic_ops" : true,
-            "bm_external_interface" : "eth2"
-          }
         }
       }
     }
