@@ -17,7 +17,7 @@ Use the `VAGRANT_DEFAULT_PROVIDER` environment variable to the desired provider
 
 _E.g._:
 ```
-  ~# VAGRANT_DEFAULT_PROVIDER=parallels
+  ~# export VAGRANT_DEFAULT_PROVIDER=parallels
   ~# ./rebuild.sh
 ```
 
@@ -39,8 +39,8 @@ VMs are defined using json (e.g., see machines.json)
 By default VMs definition is loaded from `machines.json`, it is possible to specify an alternate configuration file using the `VD_CONFIGURATION_FILE` environment variable:
 
 ```
-  ~# VD_CONFIGURATION_FILE="ironic-bmnet.json"
-  ~# VAGRANT_DEFAULT_PROVIDER=parallels
+  ~# export VD_CONFIGURATION_FILE="ironic-bmnet.json"
+  ~# export VAGRANT_DEFAULT_PROVIDER=parallels
   ~# ./rebuild.sh
 [...]
   ~# vagrant status
